@@ -71,8 +71,9 @@ func (c *client) Buy(symbol string, qty uint64) (*alpaca.Order, error) {
 		Qty:         &qtyDec,
 		Side:        alpaca.Buy,
 		Type:        alpaca.Market,
-		TimeInForce: alpaca.Day},
-	)
+		TimeInForce: alpaca.Day,
+		PositionIntent: alpaca.BuyToOpen,
+	})
 }
 
 func (c *client) get() *alpaca.Client {

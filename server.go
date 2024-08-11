@@ -18,12 +18,10 @@ func main() {
 	r.SetTrustedProxies([]string{"127.0.0.1"})
 
 	r.GET("/ping", func(c *gin.Context) {
-		order, err := alpaca.Trader.Buy("BTC/USD", 10)	
+		_, err := alpaca.Trader.Buy("AAPL", 10)	
 		if err != nil {
 			log.Printf("\n[ALPACA-error] failed to place buy order: %s\n", err)
-		} else {
-			log.Printf("\n[ALPACA-info] place buy order successfully: %+v\n", *order)
-		}
+		} 
 	})
 
 	tunnel, err := ngrok.Tunnel.Get(ctx)
