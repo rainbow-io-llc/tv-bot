@@ -2,7 +2,6 @@ package ngrok
 
 import (
 	"context"
-	"log"
 	"net"
 	"os"
 
@@ -49,6 +48,5 @@ func (t *tunnel) Get(ctx context.Context) (net.Listener, error) {
 	if err != nil {
 		return nil, err
 	}
-	log.Printf("\n[NGROK-info] ingress URL: %s\n", tun.Addr())
 	return tun, nil
 }
