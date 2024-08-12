@@ -19,7 +19,7 @@ func main() {
 	// setup routers
 	register(r)
 
-	tunnel, err := ngrok.Tunnel.Get(ctx)
+	tunnel, err := ngrok.Plain.Get(ctx)
 	if err != nil {
 		panic(fmt.Sprintf("failed to create Ngrok Proxy: %s", err))
 	}

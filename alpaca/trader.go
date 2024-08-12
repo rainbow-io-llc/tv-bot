@@ -68,19 +68,19 @@ func (c *client) Check(symbol string) (*alpaca.Position, error) {
 	return c.get().GetPosition(symbol)
 }
 
-func (c *client) Long(symbol string, qty uint64) (*alpaca.Order, error) {
+func (c *client) Buy(symbol string, qty uint64) (*alpaca.Order, error) {
 	qtyDec := decimal.NewFromUint64(qty)
 	return c.get().PlaceOrder(alpaca.PlaceOrderRequest{
 		Symbol:      symbol,
 		Qty:         &qtyDec,
 		Side:        alpaca.Buy,
 		Type:        alpaca.Market,
-		TimeInForce: alpaca.Day,
+		TimeInForce: alpaca.IOC,
 		PositionIntent: alpaca.BuyToOpen,
 	})
 }
 
-func (c *client) Close(symbol string) error {
+func (c *client) Sell(symbol string) error {
 	all := decimal.NewFromUint64(100)
 	_, err := c.get().ClosePosition(symbol, alpaca.ClosePositionRequest{Percentage: all})
 	return err

@@ -15,9 +15,9 @@ const (
 	TOKEN_ENV_VAR = "NGROK_AUTHTOKEN"
 )
 
-var Tunnel tunnel
+var BasicAuth basicAuthTunnel
 
-type tunnel struct {
+type basicAuthTunnel struct {
 	username string
 	password string
 }
@@ -34,11 +34,11 @@ func init() {
 		panic("[NGROK-error] no username or password setup for basic auth")
 	}
 
-	Tunnel.username = username	
-	Tunnel.password = password
+	BasicAuth.username = username	
+	BasicAuth.password = password
 }
 
-func (t *tunnel) Get(ctx context.Context) (net.Listener, error) {
+func (t *basicAuthTunnel) Get(ctx context.Context) (net.Listener, error) {
 	tun, err := ngrok.Listen(ctx,
 		config.HTTPEndpoint(
 			config.WithBasicAuth(t.username, t.password),
