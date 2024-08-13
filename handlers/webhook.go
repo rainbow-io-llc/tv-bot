@@ -8,7 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/rainbow-io-llc/tv-bot/alpaca"
+	"github.com/rainbow-io-llc/tv-bot/broker/alpaca"
 )
 
 const TOKEN_ENV_VAR = "WEBHOOK_TOKEN"
