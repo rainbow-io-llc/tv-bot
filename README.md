@@ -32,3 +32,13 @@ export ALPACA_PAPER_SEC=<secret key for your paper account>
 ```
 export WEBHOOK_TOKEN=<your webhook token used for call access control>
 ```
+* TradingView alert message format
+```json
+{
+    "symbol": "{{ticker}}",
+    "action": "{{strategy.order.action}}",
+    "price": "{{close}}",
+    "time": "{{time}}",
+    "token": "<your webhook token used for call access control>"
+}
+```

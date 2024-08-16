@@ -47,7 +47,8 @@ func Webhook() func(c *gin.Context) {
 		}
 
 		if payload.Action == "buy" {
-			if _, err := alpaca.Trader.Buy(payload.Symbol, 1); err != nil {
+			// TODO: use 100 qty as default here, change to percentage of portfolio
+			if _, err := alpaca.Trader.Buy(payload.Symbol, 100); err != nil {
 				log.Printf("[WEBHOOK-error] failed to execute buy: %v\n", err)
 				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 				return
